@@ -30,11 +30,7 @@
 
   <dependencies>
   	<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
-	<dependency>
-	    <groupId>org.apache.maven.plugins</groupId>
-	    <artifactId>maven-surefire-plugin</artifactId>
-	    <version>3.5.3</version>
-	</dependency>
+	
     <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
 		<dependency>
 			<groupId>io.cucumber</groupId>
@@ -68,6 +64,15 @@
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
+	      <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.10.1</version> <!-- Use a version compatible with Java 17 -->
+            <configuration>
+                <source>17</source> <!-- Java source version -->
+                <target>17</target> <!-- Java target version -->
+            </configuration>
+        </plugin>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
