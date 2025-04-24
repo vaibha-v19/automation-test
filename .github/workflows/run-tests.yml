@@ -1,0 +1,37 @@
+name: Run Selenium TestNG Tests
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow when code is pushed to the 'main' branch
+  pull_request:
+    branches:
+      - main  # Trigger the workflow for pull requests targeting the 'main' branch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3  # Pull the code from the repository
+
+    - name: Set up JDK
+      uses: actions/setup-java@v3  # Set up Java environment
+      with:
+        java-version: '11'  # Use Java 11
+        distribution: 'temurin'
+
+    - name: Cache Maven dependencies
+      uses: actions/cache@v3  # Cache Maven dependencies to speed up builds
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven
+
+    - name: Install dependencies
+      run: mvn install -DskipTests  # Install dependencies without running tests
+
+    - name: Run TestNG tests
+      run: mvn test  # Run the tests defined in testng.xml
