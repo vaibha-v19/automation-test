@@ -87,7 +87,7 @@
         <version>3.0.0</version> <!-- Latest stable version -->
         <configuration>
           <suiteXmlFiles>
-            <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile> <!-- TestNG configuration file -->
+            <suiteXmlFile>testng.xml</suiteXmlFile> <!-- TestNG configuration file -->
           </suiteXmlFiles>
         </configuration>
       </plugin>
